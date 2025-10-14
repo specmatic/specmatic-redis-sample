@@ -1,7 +1,7 @@
 package io.specmatic.redis.example;
 
 import io.specmatic.redis.VersionInfo;
-import io.specmatic.redis.stub.RedisStub;
+import io.specmatic.redis.mock.RedisMock;
 import io.specmatic.stub.ContractStub;
 import io.specmatic.test.SpecmaticContractTest;
 import org.junit.jupiter.api.AfterAll;
@@ -19,7 +19,7 @@ public class ContractTests implements SpecmaticContractTest {
     private static final String APP_PORT = "8080";
     private static final int REDIS_PORT = 8081;
     private static ContractStub stub;
-    private static RedisStub redisStub;
+    private static RedisMock redisMock;
 
     @BeforeAll
     public static void setUp() {
@@ -37,27 +37,27 @@ public class ContractTests implements SpecmaticContractTest {
         if (stub != null) {
             stub.close();
         }
-        if (redisStub != null) {
-            redisStub.stop();
+        if (redisMock != null) {
+            redisMock.stop();
         }
     }
 
     private static void startRedisStub() {
-        redisStub = new RedisStub(LOCALHOST, REDIS_PORT);
-        redisStub.start();
+        redisMock = new RedisMock(LOCALHOST, REDIS_PORT);
+        redisMock.start();
         setUpRedisExpectations();
     }
 
     private static void setUpRedisExpectations() {
-        redisStub
+        redisMock
                 .when("get")
                 .with(new String[]{"Description-1"})
                 .thenReturnString("Grocery store with free home delivery!");
-        redisStub
+        redisMock
                 .when("rpush")
                 .with(new String[]{"Products-1", "iPhone 12"})
                 .thenReturnLong(2);
-        redisStub
+        redisMock
                 .when("zrevrange")
                 .with(new String[]{"Stores-1-Products-2", "0", "(string)"})
                 .thenReturnArray(new String[]{"Powder", "Soap"});

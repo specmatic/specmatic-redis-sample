@@ -1,8 +1,8 @@
 # Private Beta
 
-![Redis Stubbing Overview](assets/redis-stub.gif)
+![Redis Mock Overview](assets/redis-stub.gif)
 
-This project demonstrates how to stub out Redis using specmatic-redis. Please contact us at https://specmatic.io for access to the distributable.
+This project demonstrates how to mock out Redis using specmatic-redis. Please contact us at https://specmatic.io for access to the distributable.
 
 ## Instructions to try this out
 
