@@ -11,13 +11,13 @@ repositories {
 }
 
 dependencies {
-    implementation "org.springframework.boot:spring-boot-starter-data-redis:3.4.4"
-    implementation "org.springframework.boot:spring-boot-starter-web:3.4.4"
+    implementation "org.springframework.boot:spring-boot-starter-data-redis:3.5.7"
+    implementation "org.springframework.boot:spring-boot-starter-web:3.5.7"
 
-    implementation "org.springframework.boot:spring-boot-starter-actuator:3.4.4"
+    implementation "org.springframework.boot:spring-boot-starter-actuator:3.5.7"
     implementation("ch.qos.logback:logback-classic:1.5.18")
 
-    testImplementation "org.springframework.boot:spring-boot-starter-test:3.4.4"
+    testImplementation "org.springframework.boot:spring-boot-starter-test:3.5.7"
     testImplementation "io.specmatic:junit5-support:${specmaticVersion}"
     testImplementation "io.specmatic.redis:specmatic-redis:${specmaticRedisVersion}"
 }
