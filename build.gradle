@@ -15,7 +15,7 @@ dependencies {
     implementation "org.springframework.boot:spring-boot-starter-data-redis"
     implementation "org.springframework.boot:spring-boot-starter-web"
     implementation "org.springframework.boot:spring-boot-starter-actuator"
-    implementation("ch.qos.logback:logback-classic:1.5.28")
+    implementation("ch.qos.logback:logback-classic:1.5.29")
 
     testImplementation "org.springframework.boot:spring-boot-starter-test"
     testImplementation "io.specmatic:junit5-support:${specmaticVersion}"
