@@ -3,11 +3,8 @@ plugins {
 }
 
 repositories {
-    mavenCentral()
-    maven {
-        url "https://repo.specmatic.io/releases"
-    }
     mavenLocal()
+    mavenCentral()
 }
 
 dependencies {
@@ -18,8 +15,7 @@ dependencies {
     implementation("ch.qos.logback:logback-classic:1.5.32")
 
     testImplementation "org.springframework.boot:spring-boot-starter-test"
-    testImplementation "io.specmatic:junit5-support:${specmaticVersion}"
-    testImplementation "io.specmatic.redis:specmatic-redis:${specmaticRedisVersion}"
+    testImplementation("io.specmatic.enterprise:executable:$specmaticEnterpriseVersion")
 }
 
 tasks.withType(JavaCompile) {

@@ -1,49 +1,31 @@
 package io.specmatic.redis.example;
 
-import io.specmatic.redis.VersionInfo;
 import io.specmatic.redis.mock.RedisMock;
-import io.specmatic.stub.ContractStub;
 import io.specmatic.test.SpecmaticContractTest;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.io.IOException;
-
-import static io.specmatic.stub.API.createStub;
+import org.springframework.test.context.ActiveProfiles;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
+@ActiveProfiles("contract-tests")
 public class ContractTests implements SpecmaticContractTest {
-    private static final String LOCALHOST = "localhost";
-    private static final int SPECMATIC_STUB_PORT = 9000;
-    private static final String APP_PORT = "8080";
-    private static final int REDIS_PORT = 8081;
-    private static ContractStub stub;
     private static RedisMock redisMock;
 
     @BeforeAll
     public static void setUp() {
-        System.out.println("Using specmatic redis " + VersionInfo.INSTANCE.describe());
-        System.setProperty("host", LOCALHOST);
-        System.setProperty("port", APP_PORT);
-        System.setProperty("endpointsAPI", "http://localhost:8080/actuator/mappings");
-        System.setProperty("spring.profiles.active", "contract-tests");
         startRedisStub();
-        stub = createStub(LOCALHOST, SPECMATIC_STUB_PORT);
     }
 
     @AfterAll
-    public static void tearDown() throws IOException {
-        if (stub != null) {
-            stub.close();
-        }
+    public static void tearDown() {
         if (redisMock != null) {
             redisMock.stop();
         }
     }
 
     private static void startRedisStub() {
-        redisMock = new RedisMock(LOCALHOST, REDIS_PORT);
+        redisMock = new RedisMock("localhost", 8081);
         redisMock.start();
         setUpRedisExpectations();
     }
