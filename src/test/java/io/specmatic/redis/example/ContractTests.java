@@ -44,5 +44,4 @@ public class ContractTests implements SpecmaticContractTest {
                 .with(new String[]{"Stores-1-Products-2", "0", "(string)"})
                 .thenReturnArray(new String[]{"Powder", "Soap"});
     }
-
 }
