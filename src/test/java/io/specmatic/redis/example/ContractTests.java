@@ -14,7 +14,9 @@ public class ContractTests implements SpecmaticContractTest {
 
     @BeforeAll
     public static void setUp() {
-        startRedisStub();
+        redisMock = new RedisMock("localhost", 8081);
+        redisMock.start();
+        setUpRedisExpectations();
     }
 
     @AfterAll
@@ -22,12 +24,6 @@ public class ContractTests implements SpecmaticContractTest {
         if (redisMock != null) {
             redisMock.stop();
         }
-    }
-
-    private static void startRedisStub() {
-        redisMock = new RedisMock("localhost", 8081);
-        redisMock.start();
-        setUpRedisExpectations();
     }
 
     private static void setUpRedisExpectations() {
