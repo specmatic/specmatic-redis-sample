@@ -35,6 +35,12 @@ jobs:
       with:
         distribution: 'temurin'
         java-version: ${{ matrix.java }}
+        
+    - name: Save Specmatic license
+      if: github.ref == 'refs/heads/main'
+      run: |
+        mkdir -p ~/.specmatic
+        echo "${{ secrets.SPECMATIC_LICENSE_KEY }}" > ~/.specmatic/specmatic-license.txt
 
     # Internal setup required by Specmatic. Sample project users can ignore this block.
     - if: ${{ inputs.orchestrator_run_suffix != '' }}
