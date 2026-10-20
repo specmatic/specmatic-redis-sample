@@ -3,6 +3,7 @@ plugins {
 }
 
 repositories {
+    maven { url = uri("https://repo.specmatic.io/releases") }
     mavenCentral()
     mavenLocal()
 }
